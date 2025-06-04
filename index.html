@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/makeabilitylab/p5js/_libraries/serial.js"></script>
+  <script language="javascript" type="text/javascript" src="libraries/p5.sound.min.js"></script>
+  <script src="INTMEDIAFINAL.js"></script>
+  <style>
+    body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: Helvetica, sans-serif;
+    background: black;
+  }
+  
+  #chat-log {
+    position: absolute;
+    bottom: 80px;
+    left: 20px;
+    right: 20px;
+    max-height: 250px;
+    overflow-y: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .chat-bubble {
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-size: 15px;
+    max-width: 75%;
+    word-wrap: break-word;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+  
+  .chat-bubble.user {
+    align-self: flex-end;
+    text-align: right;
+    background-color: rgba(255, 255, 255, 0.35); /* slightly brighter */
+    color: #111;
+  }
+  
+  .chat-bubble.ai {
+    align-self: flex-start;
+    text-align: left;
+  }
+  
+  #input-container {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  #user-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 20px;
+    font-size: 15px;
+    background-color: white; /* full opacity */
+    color: black;
+    outline: none;
+  }
+  
+  #user-input:placeholder {
+    color: #666;
+  }
+  
+  button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 15px;
+    background-color: white; /* full opacity */
+    color: black;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: #f0f0f0; /* light grey hover */
+  }
+  </style>
+</head>
+<body>
+  <div id="chat-log"></div>
+  <div id="input-container">
+    <input type="text" id="user-input" placeholder="Say something..." />
+    <button onclick="handleUserInput()">Send</button>
+  </div>
+  //When pressed enter the user input automatically sends
+  <script>
+  document.getElementById("user-input").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault(); 
+      handleUserInput(); 
+    }
+  });
+</script>
+</body>
+</html>
