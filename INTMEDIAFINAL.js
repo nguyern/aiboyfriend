@@ -161,11 +161,11 @@ function draw() {
 //Choose line based on sensor + sentiment score
 function speakFromDistance() {
   let proximityScore = map(dataIn, 0, 120, 1, 0);
-  let moodScore = (0.3 * proximityScore + 0.7 * sentimentScore);
+  let moodScore = (0.7 * proximityScore + 0.3 * sentimentScore); //equal weight of proximity and sentiment so they can work and/or in conjunction
   let currentLines;
 
   if (moodScore > 0.65) {
-    currentLines = lovingLines;
+    currentLines = lovingLines; //if physically close and/or have recently been sentimental
   } else if (moodScore > 0.35) {
     currentLines = reactiveLines;
   } else {
